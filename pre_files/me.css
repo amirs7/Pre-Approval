@@ -1,0 +1,8 @@
+.status{
+    margin-right: 100px;
+    min-width: 200px;
+}
+#status-banner{
+    position: fixed;
+    display: flex;
+}

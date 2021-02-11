@@ -29,26 +29,29 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="./pre_files/util.css">
     <link rel="stylesheet" type="text/css" href="./pre_files/main.css">
+    <link rel="stylesheet" type="text/css" href="./pre_files/me.css">
     <!--===============================================================================================-->
     <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script>
 </head>
 <body data-new-gr-c-s-check-loaded="14.995.0" data-gr-ext-installed="" style="">
 
+<div  id="status-banner">
+    <div class="status" id="gatekeepers-status">Gatekeepers: <span id="gatekeepers-status-value">0</span>/4
+    </div>
+    <div class="status" id="covered-clusters-status">Covered Clusters: <span id="covered-clusters-value">0</span>/6
+    </div>
+    <div class="status" id="selected-modules-status">Total Selected Modules: <span
+            id="selected-modules-value">0</span>/9
+    </div>
+    <button class="contact100-form-btn" onclick="showFinalPage()">
+        <span>Verify</span>
+    </button>
+</div>
 <div class="container-contact100">
     <div class="wrap-contact100">
-        <div class="parent grid-parent">
-            <div class="child">
-                <img src="./pre_files/Uni_Logo_2016.png" class="uni-logo" alt="...">
-            </div>
-            <div>
-                <span class="contact100-form-title">Modules Computer Science</span>
-                <span class="contact100-form-title-small">(see Curriculum §3a)</span>
-            </div>
-        </div>
-        <form class="contact100-form validate-form"
-              action="http://master.cs.univie.ac.at/computer-science/gatekeepers.html" method="post">
+        <div class="contact100-form validate-form">
             <div class="container">
-                <ul class="progressbar" id="progressbar">
+                <ul class="progressbar" id="progressbar" style="display: none">
                     <li class=" current">
                         <button onclick="showGatekeepersPage()">
                             <span class="progressbar-label">Knowledge</span>
@@ -63,34 +66,18 @@
                  style="display: none; flex-wrap: wrap; justify-content: space-between;">
             </div>
 
-            <div class="tab" style="display: flex;  justify-content: space-between;">
-                <div class="title-div">
-                    <h6>Please select all gatekeeper modules or equivalent alternatives you have already passed.
-                        You are free to select gatekeepers as <i>voluntary modules</i> which have to be passed in
-                        addition to the regular Master programme.
-                        These <i>voluntary modules</i> do not increase the number of gatekeepers, the number of
-                        clusters, or the number of modules. </h6>
-                </div>
+            <div id="gatekeepers-tab" class="tab" style="display: flex;  justify-content: space-between;">
                 <div class="wrap-contact100-form-radio">
                     <span class="h5">Combinatorial and Numerical Algorithms (CNA)</span>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cna-radio3" type="radio" name="gatekeeper-cna"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="cna-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="cna-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="cna-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cna-radio4" type="radio" name="gatekeeper-cna"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="cna-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="cna-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cna-radio5" type="radio" name="gatekeeper-cna"
@@ -104,21 +91,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="fda-radio3" type="radio" name="gatekeeper-fda"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="fda-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="fda-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="fda-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="fda-radio4" type="radio" name="gatekeeper-fda"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="fda-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="fda-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="fda-radio5" type="radio" name="gatekeeper-fda"
@@ -132,21 +110,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="pc-radio3" type="radio" name="gatekeeper-pc"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="pc-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="pc-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="pc-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="pc-radio4" type="radio" name="gatekeeper-pc" value="voluntary"
                                required="">
-                        <label class="label-radio100" for="pc-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="pc-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="pc-radio5" type="radio" name="gatekeeper-pc"
@@ -160,21 +129,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cs-radio3" type="radio" name="gatekeeper-cs"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="cs-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="cs-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="cs-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cs-radio4" type="radio" name="gatekeeper-cs" value="voluntary"
                                required="">
-                        <label class="label-radio100" for="cs-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="cs-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="cs-radio5" type="radio" name="gatekeeper-cs"
@@ -188,21 +148,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="dse-radio3" type="radio" name="gatekeeper-dse"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="dse-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="dse-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="dse-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="dse-radio4" type="radio" name="gatekeeper-dse"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="dse-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="dse-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="dse-radio5" type="radio" name="gatekeeper-dse"
@@ -216,21 +167,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="gfx-radio3" type="radio" name="gatekeeper-gfx"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="gfx-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="gfx-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="gfx-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="gfx-radio4" type="radio" name="gatekeeper-gfx"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="gfx-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="gfx-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="gfx-radio5" type="radio" name="gatekeeper-gfx"
@@ -244,21 +186,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="sip-radio3" type="radio" name="gatekeeper-sip"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="sip-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="sip-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="sip-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="sip-radio4" type="radio" name="gatekeeper-sip"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="sip-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="sip-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="sip-radio5" type="radio" name="gatekeeper-sip"
@@ -272,21 +205,12 @@
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="ise-radio3" type="radio" name="gatekeeper-ise"
                                value="alternative2" required="">
-                        <label class="label-radio100" for="ise-radio3">passed an alternative module at another
-                            University</label>
-                        <div class="reveal-if-active">
-                            <div class="wrap-input100 validate-input bg1 alert-validate">
-                                <span class="label-input100">Name, ECTS and weblink of alternative module(s) *</span>
-                                <input class="input100" type="text" name="ise-ext-alternative"
-                                       placeholder="Module1, x1 ECTS, weblink1; Module2, x2 ECTS, weblink2">
-                                <span class="btn-hide-validate"></span></div>
-                        </div>
+                        <label class="label-radio100" for="ise-radio3">passed</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="ise-radio4" type="radio" name="gatekeeper-ise"
                                value="voluntary" required="">
-                        <label class="label-radio100" for="ise-radio4"><i>voluntary modules</i> to fulfil the
-                            prerequisites for cluster modules</label>
+                        <label class="label-radio100" for="ise-radio4">voluntary</label>
                     </div>
                     <div class="contact100-form-radio">
                         <input class="input-radio100" id="ise-radio5" type="radio" name="gatekeeper-ise"
@@ -298,54 +222,9 @@
                 <div class="error" id="error-gatekeeper" style="display: none;">
                     <strong>ERROR!</strong> Please give all information about passed gatekeeper alternatives (*).
                 </div>
-
-                <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" onclick="showModulesPage()">
-                        <span>Next<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i></span>
-                    </button>
-                </div>
             </div>
 
             <div class="tab" style="display: none;  justify-content: space-between;">
-                <div class="title-instructions-spec">
-                    Please select 2 modules from "Algorithms", 4 modules from "Data Analysis" and 1 module from
-                    "Parallel Computing".
-                    More information about the specialisation subject <strong>Data Science</strong> can be found in the
-                    Curriculum (§2.4.2).<br>
-                    Gatekeeper modules (※) are prerequisites for courses in the same scientific field as they cover the
-                    basics.
-                    Mandatory prerequisites for each module are stated in the official <a
-                        href="https://informatik.univie.ac.at/studium/studienangebot/master/master-informatik/curriculum-master-informatik/"
-                        target="_blank">Curriculum</a> under "Teilnahmevoraussetzung".
-                    Detailed course descriptions can be also found on <a href="https://ufind.univie.ac.at/en/index.html"
-                                                                         target="_blank">u:find</a>.
-                </div>
-                <div class="title-instructions-spec">
-                    Please select 3 modules from "Algorithms", 1 module from "Data Analysis", 4 modules from "Parallel
-                    Computing" and 1 module from "Networks".
-                    More information about the specialisation subject <strong>Scientific Computing</strong> can be found
-                    in the Curriculum (§2.4.1).<br>
-                    Gatekeeper modules (※) are prerequisites for courses in the same scientific field as they cover the
-                    basics.
-                    Mandatory prerequisites for each module are stated in the official <a
-                        href="https://informatik.univie.ac.at/studium/studienangebot/master/master-informatik/curriculum-master-informatik/"
-                        target="_blank">Curriculum</a> under "Teilnahmevoraussetzung".
-                    Detailed course descriptions can be also found on <a href="https://ufind.univie.ac.at/en/index.html"
-                                                                         target="_blank">u:find</a>.
-                </div>
-                <div class="title-instructions-spec">
-                    Please select 9 modules from at least 6 different module clusters (see Curriculum §2.4.3). Be aware
-                    that you cannot select more than 4 gatekeeper modules.
-                    More information about the specialisation subject <strong>Computer Science (in general)</strong> can
-                    be found in the Curriculum (§2.4.3).<br>
-                    Gatekeeper modules (※) are prerequisites for courses in the same scientific field as they cover the
-                    basics.
-                    Mandatory prerequisites for each module are stated in the official <a
-                        href="https://informatik.univie.ac.at/studium/studienangebot/master/master-informatik/curriculum-master-informatik/"
-                        target="_blank">Curriculum</a> under "Teilnahmevoraussetzung".
-                    Detailed course descriptions can be also found on <a href="https://ufind.univie.ac.at/en/index.html"
-                                                                         target="_blank">u:find</a>.
-                </div>
                 <div class="wrap-contact100-form-checkbox cluster">
                     <span class="h5">3.1 Algorithms</span>
                     <div class="checkbox" id="algo-cluster">
@@ -669,13 +548,8 @@
                 <div class="error" id="error1">
                     <strong>ERROR!</strong> Select the modules as described above and try again.
                 </div>
-                <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" onclick="showFinalPage()">
-                        <span>Next<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i></span>
-                    </button>
-                </div>
             </div>
-        </form>
+        </div>
 
     </div>
 </div>
@@ -689,9 +563,11 @@
 <script src="./pre_files/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="./pre_files/select2.min.js"></script>
+<script src="./pre_files/me.js"></script>
+
 <script>
   $('document').ready(function() {
-    //showGatekeepersPage();
+
   });
   $('.js-select2').each(function() {
     $(this).select2({
