@@ -63,9 +63,9 @@ function showTab(n) {
   x[n].style.display = "-moz-box";
   x[n].style.display = "-ms-flexbox";
   x[n].style.display = "flex";
-  x[n].style.flexWrap = "wrap";
+  //x[n].style.flexWrap = "wrap";
   x[n].style.justifyContent = "space-between";
-  $('html,body').scrollTop(0);
+  //$('html,body').scrollTop(0);
 }
 
 function showGatekeepersPage() {
@@ -208,10 +208,7 @@ function showFinalPage() {
     }
 
     if (valid) {
-        var x = document.getElementsByClassName("tab");
-        x[2].style.display = "none";
-        showTab(3);
-        fixStepIndicator(3);
+      window.alert("Wellllllllllll done :))))))))))))")
     } else {
         document.getElementById("error1").style.display = "inline-block";
     }
@@ -254,8 +251,8 @@ function showModulesPage() {
     setPassedGatekeepers();
     if (validateGatekeeperAlternatives()) {
         var x = document.getElementsByClassName("tab");
-        x[1].style.display = "none";
-        document.getElementById("error1").style.display = "none";
+        //x[1].style.display = "none";
+        //document.getElementById("error1").style.display = "none";
         showTab(2);
         fixStepIndicator(2);
         createModuleMap();

@@ -63,7 +63,7 @@
                  style="display: none; flex-wrap: wrap; justify-content: space-between;">
             </div>
 
-            <div class="tab" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+            <div class="tab" style="display: flex;  justify-content: space-between;">
                 <div class="title-div">
                     <h6>Please select all gatekeeper modules or equivalent alternatives you have already passed.
                         You are free to select gatekeepers as <i>voluntary modules</i> which have to be passed in
@@ -306,7 +306,7 @@
                 </div>
             </div>
 
-            <div class="tab" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+            <div class="tab" style="display: none;  justify-content: space-between;">
                 <div class="title-instructions-spec">
                     Please select 2 modules from "Algorithms", 4 modules from "Data Analysis" and 1 module from
                     "Parallel Computing".
@@ -673,77 +673,6 @@
                     <button class="contact100-form-btn" onclick="showFinalPage()">
                         <span>Next<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i></span>
                     </button>
-                </div>
-            </div>
-
-            <div class="tab">
-                <div class="notes-div">
-                    <h6>Notes <i>optional</i></h6>
-                </div>
-                <div class="textarea-div">
-                    <textarea id="notes" placeholder="Add any important comments here."></textarea>
-                </div>
-                <div class="wrap-contact100-form-checkbox">
-                    <div class="checkbox" id="confirm-box">
-                        <div class="contact100-form-checkbox m-t-15">
-                            <input class="input-checkbox100" id="confirm" type="checkbox" name="confirm">
-                            <label class="label-checkbox100" for="confirm">I have read the <a
-                                    href="https://informatik.univie.ac.at/en/study/courses-of-study/master/master-computer-science/"
-                                    target="_blank">Curriculum</a>
-                                and I confirm that no selected courses have already been used otherwise, directly or
-                                indirectly by passing equivalent courses.
-                                Furthermore I agree that the Specialisation Subject ("Ausprägungsfach") can be changed
-                                only once.</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="wrap-authorization">
-                    <div class="title-div" id="send-code-title">
-                        Click <a onclick="generatePIN();" style="cursor: pointer; cursor: hand;">here</a> to generate an
-                        authentification code.
-                    </div>
-                    <div class="send-code" id="send-code-success">
-                        PIN has been sent to your email address. <a onclick="generatePIN();"
-                                                                    style="cursor: pointer; cursor: hand;">Resend</a>
-                    </div>
-                    <div class="send-code" id="send-code-error">
-                        An error has occurred. <a onclick="generatePIN();"
-                                                  style="cursor: pointer; cursor: hand;">Resend</a>
-                    </div>
-                    <div class="wrap-input100 validate-input bg1 rs1-wrap-input100 alert-validate">
-                        <span class="label-input100">PIN Code *</span>
-                        <input class="input100" type="text" id="pin" name="pin"
-                               placeholder="Enter authorization pin code">
-                        <span class="btn-hide-validate"></span></div>
-                </div>
-                <div class="title-div">
-                    <h6>You can download a <a onclick="createPDF(&#39;preview&#39;);"
-                                              style="cursor: pointer; cursor: hand;">preview</a> of your submission.
-                    </h6>
-                </div>
-                <div class="error" id="error2">
-                    <strong>ERROR!</strong> Please accept the terms described above before submitting.
-                </div>
-                <div class="error" id="error3">
-                    <strong>ERROR!</strong> Entered PIN is wrong! Please try again.
-                </div>
-                <div class="error" id="error-unknown">
-                    <strong>ERROR!</strong> An error has occurred. Please try again.
-                </div>
-                <div class="container-contact100-form-btn">
-                    <button class="contact100-form-btn" onclick="createPDF(&#39;email&#39;)">
-                        <span>Submit<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i></span>
-                    </button>
-                </div>
-            </div>
-            <div class="tab">
-                <div class="title-div">
-                    <h6>Thanks for submitting your module planning. You will be notified once your module selection is
-                        approved.
-                        In case of problems please contact the SPL5 directly (email or consultation hour).<br>
-                        For additional information visit the <a
-                                href="https://informatik.univie.ac.at/en/study/support-for-students/">Support for
-                            Students</a> page.</h6>
                 </div>
             </div>
         </form>
