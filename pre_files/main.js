@@ -43,10 +43,10 @@ function activateCheckboxes() {
     });
 }
 
-function selectModule(box) { 
+function selectModule(box) {
     moduleMap.get(box.name).setChecked(box.checked);
     var moduleNo = moduleMap.get(box.name)._membership;
-    selectedModules[moduleNo] = box.checked ? selectedModules[moduleNo]+1 : selectedModules[moduleNo]-1;  
+    selectedModules[moduleNo] = box.checked ? selectedModules[moduleNo]+1 : selectedModules[moduleNo]-1;
     activateCheckboxes();
     if (gatekeepersModules.includes(box.name)) {
         selectedGatekeepers = box.checked ? selectedGatekeepers+1 : selectedGatekeepers-1;
@@ -55,6 +55,8 @@ function selectModule(box) {
 
 function showTab(n) {
   var x = document.getElementsByClassName("tab");
+    //for (let i = 0; i < x.length; i++)
+    //    x[i].style.display = "none";
   x[n].style.display = "block";
   x[n].style.display = "-webkit-box";
   x[n].style.display = "-webkit-flex";
@@ -67,35 +69,36 @@ function showTab(n) {
 }
 
 function showGatekeepersPage() {
-    var valid = true;    
-    var input = document.getElementById("personal-data-tab").getElementsByClassName("input100");    
-    for(var i = 0; i < input.length; i++) {
-        if(validatePersonalData(input[i]) == false) {
-            showValidatePersonalData(input[i]);
-            valid = false;
-        }
-    }
+    var valid = true;
+    //var input = document.getElementById("personal-data-tab").getElementsByClassName("input100");
+    //for(var i = 0; i < input.length; i++) {
+    //    if(validatePersonalData(input[i]) == false) {
+    //        showValidatePersonalData(input[i]);
+    //        valid = false;
+    //    }
+    //}
     var dropdownSpec = document.getElementById("specialisation-subject");
-    if (dropdownSpec.selectedIndex == 0) {
-        valid = false;
-        document.getElementById("specialisation-subject-label").style.color = "#fa4251";
-    }
+    //if (dropdownSpec.selectedIndex == 0) {
+    //    valid = false;
+    //    document.getElementById("specialisation-subject-label").style.color = "#fa4251";
+    //}
     if (valid) {
         document.getElementById("error-gatekeeper").style.display = "none";
         var x = document.getElementsByClassName("tab");
-        x[0].style.display = "none"; 
+        x[0].style.display = "none";
         showTab(1);
         fixStepIndicator(1);
-        selectedSpecialisation = dropdownSpec.options[dropdownSpec.selectedIndex].value;
+        //selectedSpecialisation = dropdownSpec.options[dropdownSpec.selectedIndex].value;
         maxModules = 9;
-        if (selectedSpecialisation == "computer-science")
-            currentRules = computerScienceRules;
-        else if (selectedSpecialisation == "scientific-computing")
-            currentRules = scientificComputingRules;
-        else {
-            currentRules = dataScienceRules;
-            maxModules = 7;
-        }            
+        currentRules = computerScienceRules;
+        //if (selectedSpecialisation == "computer-science")
+        //    currentRules = computerScienceRules;
+        //else if (selectedSpecialisation == "scientific-computing")
+        //    currentRules = scientificComputingRules;
+        //else {
+        //    currentRules = dataScienceRules;
+        //    maxModules = 7;
+        //}
     }
 }
 
@@ -103,7 +106,7 @@ function generatePIN(){
     var firstName = document.getElementById("first-name").value;
     var lastName = document.getElementById("last-name").value;
     var toEmail = document.getElementById("email").value;
-    document.getElementById("send-code-title").style.display = "none"; 
+    document.getElementById("send-code-title").style.display = "none";
     document.getElementById("send-code-success").style.display = "none";
     document.getElementById("send-code-error").style.display = "none";
     $.ajax({
@@ -137,8 +140,8 @@ function createPDF(target) {
         writePersonalData(pdf);
         var baseY =  writeGatekeepers(pdf);
         var baseY = writeClusters(pdf, baseY);
-        writeFooter(pdf, baseY);  
-        
+        writeFooter(pdf, baseY);
+
         pdf.setProperties({
             title: 'Module Planning'
         });
@@ -163,7 +166,7 @@ function createPDF(target) {
                                 let x = document.getElementsByClassName("tab");
                                 x[3].style.display = "none";
                                 showTab(4);
-                                fixStepIndicator(4); 
+                                fixStepIndicator(4);
                             } else
                                 document.getElementById("error-unknown").style.display = "inline-block";
                         },
@@ -174,7 +177,7 @@ function createPDF(target) {
                         else
                             document.getElementById("error-unknown").style.display = "inline-block";
                     }
-            });            
+            });
         } else {
             document.getElementById("error2").style.display = "inline-block";
         }
@@ -185,13 +188,13 @@ function createPDF(target) {
         writePersonalData(pdf);
         var baseY =  writeGatekeepers(pdf);
         var baseY = writeClusters(pdf, baseY);
-        writeFooter(pdf, baseY);       
+        writeFooter(pdf, baseY);
         writePreviewText(pdf); //if the document is longer than 1 page
         pdf.setProperties({
             title: 'Module Planning'
         });
         pdf.save(pdfName + '_preview.pdf');
-    } 
+    }
 }
 
 function showFinalPage() {
@@ -211,7 +214,7 @@ function showFinalPage() {
         fixStepIndicator(3);
     } else {
         document.getElementById("error1").style.display = "inline-block";
-    }       
+    }
 }
 
 function setPassedGatekeepers(){
@@ -256,34 +259,32 @@ function showModulesPage() {
         showTab(2);
         fixStepIndicator(2);
         createModuleMap();
-        displayClusters();  
+        displayClusters();
     } else {
         document.getElementById("error-gatekeeper").style.display = "inline-block";
     }
-      
+
 }
 
 function validateGatekeeperAlternatives() {
     var altInfoGiven = true;
-    passedGatekeepers.forEach((value, key) => {
-        if (value) {
-            var desc = "";
-            switch($("input:radio[name=gatekeeper-" + key + "]:checked").val()) {
-                case "alternative1": 
-                    desc = $("input:text[name=" + key + "-alternative]").val();
-                    if (desc == "") altInfoGiven = false;
-                    break;
-                case "alternative2":
-                    desc = $("input:text[name=" + key + "-ext-alternative]").val();
-                    if (desc == "") altInfoGiven = false;
-                    break;
-                default: break;
-            }
-        }
-    } )
-
+    //passedGatekeepers.forEach((value, key) => {
+    //    if (value) {
+    //        var desc = "";
+    //        switch($("input:radio[name=gatekeeper-" + key + "]:checked").val()) {
+    //            case "alternative1":
+    //                desc = $("input:text[name=" + key + "-alternative]").val();
+    //                if (desc == "") altInfoGiven = false;
+    //                break;
+    //            case "alternative2":
+    //                desc = $("input:text[name=" + key + "-ext-alternative]").val();
+    //                if (desc == "") altInfoGiven = false;
+    //                break;
+    //            default: break;
+    //        }
+    //    }
+    //} )
     return altInfoGiven;
-
 }
 
 window.checkSpecialisation = function(e) {
@@ -318,25 +319,6 @@ function validatePersonalData(input) {
     }
 }
 
-function showValidatePersonalData(input) {
-    var thisAlert = $(input).parent();
-
-    $(thisAlert).addClass('alert-validate');
-
-    $(thisAlert).append('<span class="btn-hide-validate">&#xf136;</span>')
-    $('.btn-hide-validate').each(function() {
-        $(this).on('click',function() {
-           hideValidate(this);
-        });
-    });
-}
-
-function hideValidatePersonalData(input) {
-    var thisAlert = $(input).parent();
-    $(thisAlert).removeClass('alert-validate');
-    $(thisAlert).find('.btn-hide-validate').remove();
-}
-
 (function ($) {
     "use strict";
 
@@ -350,7 +332,7 @@ function hideValidatePersonalData(input) {
             else {
                 $(this).parent().addClass('true-validate');
             }
-        })    
+        })
     })
 
     /*==================================================================
@@ -414,7 +396,7 @@ function hideValidatePersonalData(input) {
         $(thisAlert).removeClass('alert-validate');
         $(thisAlert).find('.btn-hide-validate').remove();
     }
-    
+
 })(jQuery);
 
 
