@@ -210,7 +210,7 @@ function showFinalPage() {
   if (valid) {
     window.alert('Wellllllllllll done :))))))))))))');
   } else {
-    document.getElementById('error1').style.display = 'inline-block';
+    window.alert('Selected courses do not satisfy rules');
   }
 }
 
