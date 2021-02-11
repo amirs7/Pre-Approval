@@ -242,7 +242,7 @@ function displayClusters() {
     initialiseComputerGraphics(clusters);
     initialiseMultimedia(clusters);
     initialiseInformationManagement(clusters);
-    instructions[2].style.display = 'block';
+    //instructions[2].style.display = 'block';
   }
 }
 
@@ -277,7 +277,7 @@ function validateGatekeeperAlternatives() {
   //            case "alternative2":
   //                desc = $("input:text[name=" + key + "-ext-alternative]").val();
   //                if (desc == "") altInfoGiven = false;
-  //                break;
+  //               t  break;
   //            default: break;
   //        }
   //    }
