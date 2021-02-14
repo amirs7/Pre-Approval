@@ -71,7 +71,7 @@ function savePlan() {
     data: JSON.stringify(requestBody),
     processData: false,
     type: 'POST',
-    url: '/planner',
+    url: '/plans',
     success: function() {
       window.alert(`Plan ${planName} was saved!`);
       if (window.location.pathname !== '/plans/' + planName)
