@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 db.defaults({ plans: [] }).write();
 
-app.get('/planner', (req, res) => {
+app.get('/plans/new', (req, res) => {
   res.render('planner.html',{plan:JSON.stringify({})});
 });
 
@@ -28,7 +28,7 @@ app.get('/plans/:planName', (req, res) => {
   return res.render('planner', { plan: JSON.stringify(plan) });
 });
 
-app.post('/planner', (req, res) => {
+app.post('/plans', (req, res) => {
   let planQuery = db.get('plans').find({ id: req.body.name });
   if (planQuery.value() != null) {
     planQuery.assign(req.body)
