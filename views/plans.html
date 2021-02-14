@@ -1,0 +1,37 @@
+<html>
+<style>
+    .delete-button {
+        margin-left: 10px;
+    }
+</style>
+<script src="/jquery-3.2.1.min.js"></script>
+<script>
+  function deletePlan(name) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/plans/' + name,
+      success: function() {
+        window.alert(`Plan ${name} deleted!`);
+        window.location.replace('/plans');
+      },
+      error: function() {
+        window.alert(`Deleting plan failed!!!!!`);
+      }
+    });
+  }
+</script>
+<body>
+<h1>Saved Plans</h1>
+<a href="/plans/new">New Plan</a>
+<ul>
+    {{#plans}}
+    <li>
+        <a href="/plans/{{name}}">
+            {{name}}
+        </a>
+        <button onclick="deletePlan('{{name}}')" class="delete-button">Delete</button>
+    </li>
+    {{/plans}}
+</ul>
+</body>
+</html>

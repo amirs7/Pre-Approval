@@ -17,8 +17,14 @@ app.use(bodyParser.json());
 
 db.defaults({ plans: [] }).write();
 
+app.get('/plans', (req, res) => {
+  let plans = db.get('plans').value();
+  console.log(plans);
+  res.render('plans', { plans: plans, bar: [1, 2] });
+});
+
 app.get('/plans/new', (req, res) => {
-  res.render('planner.html',{plan:JSON.stringify({})});
+  res.render('planner.html', { plan: JSON.stringify({}) });
 });
 
 app.get('/plans/:planName', (req, res) => {
@@ -26,6 +32,14 @@ app.get('/plans/:planName', (req, res) => {
   if (plan == null)
     return res.sendStatus(404);
   return res.render('planner', { plan: JSON.stringify(plan) });
+});
+
+app.delete('/plans/:planName', (req, res) => {
+  let plan = db.get('plans').find({ id: req.params.planName }).value();
+  if (plan == null)
+    return res.sendStatus(404);
+  db.get('plans').remove({ id: req.params.planName }).write();
+  return res.sendStatus(200);
 });
 
 app.post('/plans', (req, res) => {
