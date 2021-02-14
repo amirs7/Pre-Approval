@@ -74,7 +74,8 @@ function savePlan() {
     url: '/planner',
     success: function() {
       window.alert(`Plan ${planName} was saved!`);
-      window.location.replace('/plans/' + planName);
+      if (window.location.pathname !== '/plans/' + planName)
+        window.location.replace('/plans/' + planName);
     },
     error: function() {
       window.alert(`Saving plan failed!!!!!`);
