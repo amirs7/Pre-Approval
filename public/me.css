@@ -6,3 +6,10 @@
     position: fixed;
     display: flex;
 }
+#plan-name{
+    background-color: dimgray;
+}
+
+.wrap-contact100{
+    margin-top: 50px;
+}

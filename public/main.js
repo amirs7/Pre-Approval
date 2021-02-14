@@ -41,8 +41,15 @@ function activateCheckboxes() {
   });
 }
 
+let selectedModulesSet = new Set();
+
 function selectModule(box) {
-  moduleMap.get(box.name).setChecked(box.checked);
+  let mod = moduleMap.get(box.name);
+  if (box.checked)
+    selectedModulesSet.add(box.name);
+  else
+    selectedModulesSet.delete(box.name);
+  mod.setChecked(box.checked);
   var moduleNo = moduleMap.get(box.name)._membership;
   selectedModules[moduleNo] = box.checked ? selectedModules[moduleNo] + 1 : selectedModules[moduleNo] - 1;
   activateCheckboxes();
@@ -208,7 +215,7 @@ function showFinalPage() {
   }
 
   if (valid) {
-    window.alert('Wellllllllllll done :))))))))))))');
+    window.alert('Well done, your selected courses ');
   } else {
     window.alert('Selected courses do not satisfy rules');
   }
