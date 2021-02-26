@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  planner:
+    build: ./
+    ports:
+      - 9000:80
+    environment:
+      PORT: 80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.planner.rule=Host(`planner.seyhani.ir`)"
+      - "traefik.http.routers.planner.tls=true"
+      - "traefik.http.routers.planner.tls.certresolver=amir-resolver"

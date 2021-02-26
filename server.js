@@ -4,7 +4,7 @@ const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
+const adapter = new FileSync('data/db.json');
 const db = low(adapter);
 
 const app = express();
@@ -55,7 +55,7 @@ app.post('/plans', (req, res) => {
   return res.sendStatus(200);
 });
 
-app.listen(9000, () => {
+app.listen(process.env['PORT'], () => {
   console.log('App started');
 });
 
