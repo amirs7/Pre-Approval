@@ -12,3 +12,8 @@ services:
       - "traefik.http.routers.planner.rule=Host(`planner.seyhani.ir`)"
       - "traefik.http.routers.planner.tls=true"
       - "traefik.http.routers.planner.tls.certresolver=amir-resolver"
+
+networks:
+  default:
+    name: traefik
+    external: true
